@@ -1,0 +1,134 @@
+/* header.css */
+
+
+  .header__title {
+    margin-top: 1em;
+    font-size: 4em;
+    font-weight: bold;
+    color: #343a40;
+    text-align: center; /* Center text within the element */
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:#051c33;
+  }
+  
+  .header__search-container{
+    margin: auto;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    
+  }
+  .header__search-bar {
+    margin-top: 1em;
+    font-size: 1em;
+    width: 80%;
+    background-color: #f3f7f9;
+    padding: 10px 15px;
+    border: 3px solid #d7dbdf;
+    border-right: none;
+    border-radius: .35em 0 0 .35em;
+  }
+  /*  */
+
+  .search-btn{
+    padding: 10px 16px;
+    border: 2px solid #080808;
+    background-color: #13304c;
+    border-radius: 0 .35em .35em 0;
+    color: #d7dbdf;
+    margin-top: 1em;
+  }
+/*  */
+.header__nav {
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    align-items: center; /* Centers the buttons vertically if needed */
+    gap: 10px; /* Adjust the space between buttons */
+    /* margin-top: 20px; */
+    margin-top: 1em;
+  }
+  
+  /* .nav-btn {
+    background-color:#13304c;
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+  }
+   */
+  /* .nav-btn:hover {
+    background-color: #0056b3;
+  } */
+  
+  .nav-btn:focus {
+    outline: none;
+  }
+  
+  .nav-btn {
+    background-color:#13304c;
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 2px;
+    font-size: 16px;
+    width: 8%;
+    transition: background-color 0.3s ease;
+    /* margin-top: 15px; */
+    margin-top: 1em;
+  }
+  
+  .nav-btn:hover {
+    background-color:#13304c;
+  }
+  
+  .nav-btn:focus {
+    outline: none;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .nav-btn {
+      padding: 8px 16px;
+      font-size: 14px;
+      margin-bottom: 10px; /* Add space between rows when buttons wrap */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .nav-btn {
+      padding: 6px 12px;
+      font-size: 12px;
+      width: 100%; /* Make each button take the full width on small screens */
+      text-align: center;
+    }
+  }
+
+  
+  /*  */
+  .image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .image-item {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .image-item {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  
