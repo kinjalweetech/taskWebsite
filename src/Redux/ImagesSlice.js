@@ -1,41 +1,82 @@
-// src/redux/slices/ImageSlice.js
+// // redux/photoSlice.js
+// import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+// import axios from 'axios';
+// import { apiKey } from '../Component/Api/Config';
 
+// // Thunk to fetch photos
+// export const fetchPhotos = createAsyncThunk('photos/fetchPhotos', async (query) => {
+//   const response = await axios.get(
+//     `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
+//   );
+//   return response.data.photos.photo;
+// });
+
+// const photoSlice = createSlice({
+//   name: 'photos',
+//   initialState: {
+//     images: [],
+//     loading: false,
+//     error: null,
+//   },
+//   reducers: {},
+//   extraReducers: (builder) => {
+//     builder
+//       .addCase(fetchPhotos.pending, (state) => {
+//         state.loading = true;
+//         state.error = null;
+//       })
+//       .addCase(fetchPhotos.fulfilled, (state, action) => {
+//         state.images = action.payload;
+//         state.loading = false;
+//       })
+//       .addCase(fetchPhotos.rejected, (state, action) => {
+//         state.error = action.error.message;
+//         state.loading = false;
+//       });
+//   },
+// });
+
+// export default photoSlice.reducer;
+
+
+// src/redux/imageSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { apiKey } from '../Component/Api/Config';
 
-// Dummy API URLs for different categories (these are examples; replace them with real URLs)
-const API_URLS = {
-  Mountain: 'https://jsonplaceholder.typicode.com/photos?_limit=10&albumId=1',
-  Bird: 'https://jsonplaceholder.typicode.com/photos?_limit=10&albumId=2',
-  Food: 'https://jsonplaceholder.typicode.com/photos?_limit=10&albumId=3',
-  Beach: 'https://jsonplaceholder.typicode.com/photos?_limit=10&albumId=4',
-};
-
+// Thunk to fetch images
 export const fetchImages = createAsyncThunk(
   'images/fetchImages',
-  async (category) => {
-    const response = await fetch(API_URLS[category]);
-    const data = await response.json();
-    return { category, data };
+  async (query) => {
+    const response = await axios.get(
+      `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
+    );
+    return response.data.photos.photo;
   }
 );
 
+// Slice to handle images state
 const imageSlice = createSlice({
   name: 'images',
   initialState: {
-    images: {},
-    status: null,
+    images: [],
+    loading: false,
+    error: null,
   },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchImages.pending, (state) => {
-        state.status = 'loading';
+        state.loading = true;
+        state.error = null;
       })
       .addCase(fetchImages.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.images[action.payload.category] = action.payload.data;
+        state.loading = false;
+        state.images = action.payload;
       })
-      .addCase(fetchImages.rejected, (state) => {
-        state.status = 'failed';
+      .addCase(fetchImages.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });
