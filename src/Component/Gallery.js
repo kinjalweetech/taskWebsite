@@ -38,6 +38,7 @@
 import React from 'react';
 import NoImages from '../Component/NoImageFound';
 import Image from '../Component/Images'; // Assuming you have an Image component for each image
+import '../Component/CSS/header.css'
 
 const Gallery = ({ data }) => {
   let images;
@@ -50,7 +51,7 @@ const Gallery = ({ data }) => {
       let secret = image.secret;
       let title = image.title;
       let url = `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_m.jpg`;
-      
+      // return <Image/>
       return <Image key={id} url={url} title={title} />;
     });
   } else {
