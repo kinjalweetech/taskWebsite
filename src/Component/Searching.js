@@ -94,18 +94,10 @@ function Searching() {
         </Link>
       </nav>
       <div className="image-container">
-        {state.loading && <p>Loading...</p>}
+      {state.loading && <p>Loading...</p>}
         {state.error && <div>{state.error}</div>}
         {!state.loading && state.images.length > 0 && (
-          <div className="gallery">
-            {state.images.map((image) => {
-                  return <Gallery data={images}/>
-            //   const { farm, server, id, secret, title } = image;
-            //   const url = `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_m.jpg`;
-            //   return <img key={id} src={url} alt={title} className="image-item" />; */}
-            //  })} 
-                
-          </div>
+          <Gallery data={state.images} /> // Pass the fetched images to the Gallery component
         )}
       </div>
     </>
