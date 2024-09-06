@@ -319,6 +319,7 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  /* margin: 0%; */
 }
 
 .search-container form {
@@ -335,12 +336,12 @@
 }
 
 .search-container input[type="text"]:focus {
-  border-color: #3498db;
+  border-color: #13304C;
   outline: none;
 }
 
 .search-container .search-btn {
-  background-color: #3498db;
+  background-color: #13304C;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -348,10 +349,11 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  /* gap: 0; */
 }
 
 .search-container .search-btn:hover {
-  background-color: #2980b9;
+  background-color: #13304c;
 }
 
 /* Navigation Button Styles */
@@ -372,7 +374,7 @@
 }
 
 .nav-btn:hover {
-  background-color: #e67e22;
+  background-color: #13304c;
 }
 
 /* Title Styles */
@@ -383,5 +385,6 @@
 
 .header_title h1 {
   font-size: 2.5rem;
-  color: #3498db;
+  color: #13304c;
+  font-family: "Lobster","Josefin Sans" ;
 }
