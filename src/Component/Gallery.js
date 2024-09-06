@@ -1,46 +1,9 @@
-// // src/components/Gallery.js
-// import React from 'react';
-// import { useSelector } from 'react-redux';
-// import NoImages from './NoImageFound';
-// // import NoImages from '../Component/NoImageFound';
-// import Image from '../Component/Images';
+import React from "react";
+import NoImages from "../Component/NoImageFound";
+import Image from "../Component/Images"; // Assuming you have an Image component for each image
+import "../Component/CSS/header.css";
 
-// const Gallery = () => {
-//   // Use `useSelector` to get images and error from the Redux store
-//   const { images, error } = useSelector((state) => state.images);
-
-//   let content;
-  
-//   if (error) {
-//     // If there's an error, display it
-//     content = <p>Error: {error}</p>;
-//   } else if (images.length === 0) {
-//     // If no images, show NoImages component
-//     content = <NoImages/>;
-//   } else {
-//     // If images are available, map them to Image components
-//     content = images.map(image => {
-//       const { farm, server, id, secret, title } = image;
-//       const url = `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_m.jpg`;
-//       return <Image url={url} key={id} alt={title} />;
-//     });
-//   }
-
-//   return (
-//     <div>
-//       <ul>{content}</ul>
-//     </div>
-//   );
-// };
-
-// export default Gallery;
-
-import React from 'react';
-import NoImages from '../Component/NoImageFound';
-import Image from '../Component/Images'; // Assuming you have an Image component for each image
-import '../Component/CSS/header.css'
-
-const Gallery = ({ data }) => {
+const Gallery = ({ data, searching }) => {
   let images;
 
   if (data.length > 0) {
@@ -53,6 +16,12 @@ const Gallery = ({ data }) => {
       let url = `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_m.jpg`;
       // return <Image/>
       return <Image key={id} url={url} title={title} />;
+      // return (
+      //   <div key={id} className="image-container">
+      //   <h3 className="image-title">{title}</h3> {/* Display the title above the image */}
+      //   <Image url={url} title={title} />
+      // </div>
+      // )
     });
   } else {
     images = <NoImages />; // Return NoImages component if no images are found
@@ -60,6 +29,7 @@ const Gallery = ({ data }) => {
 
   return (
     <div className="gallery-container">
+      <h2>{searching} images </h2> {/* Display the search term as the title */}
       <ul className="image-list">{images}</ul>
     </div>
   );

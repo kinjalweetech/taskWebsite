@@ -103,7 +103,7 @@ const ImageGallery = ({ category }) => {
     return <p>Error: {error}</p>;
   }
 
-  return <Gallery data={images} />; // Gallery component to display images
+  // return <Gallery data={images} />; // Gallery component to display images
 };
 
 export default ImageGallery;

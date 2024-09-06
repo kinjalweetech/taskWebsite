@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { apiKey } from '../Component/Api/Config';
 import '../Component/CSS/header.css'
 import Gallery from './Gallery';
+// import ImagesSlice from '../Redux/ImagesSlice';
 
 function Searching() {
   const search = useSelector((state) => state.search.searchTerm);
@@ -16,7 +17,7 @@ function Searching() {
     const fetchImages = async () => {
       if (!search) return;
 
-      setState((prevState) => ({ ...prevState, loading: true, error: null }));
+      setState((prevState) => ({ ...prevState, loading:true, error: null }));
 
       try {
         const response = await fetch(
@@ -36,6 +37,8 @@ function Searching() {
             loading: false,
             error: null,
           }));
+
+          // setImageTitle(photo[0].title);
         }
       } catch (error) {
         setState((prevState) => ({
@@ -93,13 +96,13 @@ function Searching() {
           Beach
         </Link>
       </nav>
-      <div className="image-container">
-      {state.loading && <p>Loading...</p>}
-        {state.error && <div>{state.error}</div>}
+       <div className="image-container">
+      {/* {state.loading && <p>Loading...</p>}
+        {state.error && <div>{state.error}</div>} */}
         {!state.loading && state.images.length > 0 && (
-          <Gallery data={state.images} /> // Pass the fetched images to the Gallery component
-        )}
-      </div>
+          <Gallery data={state.images} searching = {search} /> // Pass the fetched images to the Gallery component
+        )} 
+       </div> 
     </>
   );
 }
