@@ -1,36 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NoImages from "../Component/NoImageFound";
-import Image from "../Component/Images"; // Assuming you have an Image component for each image
+import Image from "../Component/Images"; // Assuming you have an Image component
+import Loader from "../Component/Loader";
 import "../Component/CSS/header.css";
 
 const Gallery = ({ data, searching }) => {
-  let images;
+  const [loading, setLoading] = useState(true);
 
-  if (data.length > 0) {
-    images = data.map((image) => {
-      let farm = image.farm;
-      let server = image.server;
-      let id = image.id;
-      let secret = image.secret;
-      let title = image.title;
-      let url = `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_m.jpg`;
-      // return <Image/>
-      return <Image key={id} url={url} title={title} />;
-      // return (
-      //   <div key={id} className="image-container">
-      //   <h3 className="image-title">{title}</h3> {/* Display the title above the image */}
-      //   <Image url={url} title={title} />
-      // </div>
-      // )
-    });
-  } else {
-    images = <NoImages />; // Return NoImages component if no images are found
-  }
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false); // Hide loader after 2 seconds
+    }, 1000);
+
+    return () => clearTimeout(timer); // Cleanup timeout on component unmount
+  }, []);
 
   return (
     <div className="gallery-container">
-      <h2>{searching} images </h2> {/* Display the search term as the title */}
-      <ul className="image-list">{images}</ul>
+      {loading ? (
+        <Loader /> // Show loader while waiting
+      ) : (
+        <>
+          <h2> {searching} images </h2>
+          <ul className="image-list">
+            {data.length > 0 ? (
+              data.map((image) => {
+                const { farm, server, id, secret, title } = image;
+                const url = `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_m.jpg`;
+                return <Image key={id} url={url} title={title} />;
+              })
+            ) : (
+              <NoImages /> // Show no images found if no data
+            )}
+          </ul>
+        </>
+      )}
     </div>
   );
 };
